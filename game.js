@@ -212,9 +212,9 @@ preloadGame.prototype = {
 
         /*  time to load the sound effects.
             it's the same concept applied to images, with the key/path couple of arguments  */
-        // game.load.audio("coinsound", gameOptions.soundPath + "coin.mp3");
-        // game.load.audio("jumpsound", gameOptions.soundPath + "jump.mp3");
-        // game.load.audio("hurtsound", gameOptions.soundPath + "hurt.mp3");
+        game.load.audio("coinsound", gameOptions.soundPath + "coin.mp3");
+        game.load.audio("jumpsound", gameOptions.soundPath + "jump.mp3");
+        game.load.audio("hurtsound", gameOptions.soundPath + "hurt.mp3");
 
         /*  a sprite sheet is something more complex than an image, as it's
             a set of images placed into a grid, where each grid item represents a frame.
@@ -264,7 +264,7 @@ playGame.prototype = {
         this.setDefaultProperties();
 
         // this method will add audio to the game
-        // this.addAudio();
+        this.addAudio();
 
         /*  we are using ARCADE physics in this game.
             the physics engine will handle collisions, overlaps, velocities and motions  */
@@ -356,14 +356,14 @@ playGame.prototype = {
     },
 
     // this method will define the sound effects used in the game
-    // addAudio: function(){
-    //
-    //     /*  this is how we add an audio resource to the game, the argument is the key
-    //         we assigned to the sound during preload  */
-    //     this.coinSound = game.add.audio("coinsound");
-    //     this.hurtSound = game.add.audio("hurtsound");
-    //     this.jumpSound = game.add.audio("jumpsound");
-    // },
+    addAudio: function(){
+
+        /*  this is how we add an audio resource to the game, the argument is the key
+            we assigned to the sound during preload  */
+        this.coinSound = game.add.audio("coinsound");
+        this.hurtSound = game.add.audio("hurtsound");
+        this.jumpSound = game.add.audio("jumpsound");
+    },
 
     // this method will define the groups used in the game
     defineGroups: function(){
@@ -464,7 +464,7 @@ playGame.prototype = {
             * the font size
             in this case we are showing the best score
         */
-        var highScoreText = game.add.bitmapText(game.width - 10, game.height - 10,'font', "Best Score: " + this.savedData.score.toString(), 30);
+        var highScoreText = game.add.bitmapText(game.width - 10, game.height - 10, "font", "Best Score: " + this.savedData.score.toString(), 30);
 
         // bitmap texts can also have their registration point set
         highScoreText.anchor.set(1, 1);
@@ -473,14 +473,14 @@ playGame.prototype = {
         this.overlayGroup.add(highScoreText);
 
         // same concept applies to the bitmap text which shows the amount of coins collected
-        var coinsText = game.add.bitmapText(game.width / 2, game.height - 10,'font', "Coins: " + this.savedData.coins.toString(), 30);
+        var coinsText = game.add.bitmapText(game.width / 2, game.height - 10, "font", "Coins: " + this.savedData.coins.toString(), 30);
         coinsText.anchor.set(0.5, 1);
         this.overlayGroup.add(coinsText);
 
         /*  same concept applies to the bitmap text which shows the score.
             this time the bitmapText is bound to a property than to a local variable
             because we are goint to update it inside other methods  */
-        this.scoreText = game.add.bitmapText(10, game.height - 10, 'font', "Score: 0", 30);
+        this.scoreText = game.add.bitmapText(10, game.height - 10, "font", "Score: 0", 30);
         this.scoreText.anchor.set(0, 1);
         this.overlayGroup.add(this.scoreText);
     },
@@ -509,12 +509,12 @@ playGame.prototype = {
         }, 200, Phaser.Easing.Cubic.InOut, true, 0, -1, true);
 
         // adding a bitmap text with in-game instructions ("tap to jump"), setting its anchor and add it to menuGroup group
-        var tapText = game.add.bitmapText(game.width / 2, tap.y - 120,'font', "Tap to jump", 45);
+        var tapText = game.add.bitmapText(game.width / 2, tap.y - 120, "font", "Tap to jump", 45);
         tapText.anchor.set(0.5);
         this.menuGroup.add(tapText);
 
         // adding a bitmap text with game title, setting its anchor and add it to menuGroup group
-        var titleText = game.add.bitmapText(game.width / 2, tap.y - 200,'font', "LADDERZ", 90);
+        var titleText = game.add.bitmapText(game.width / 2, tap.y - 200, "font", "LADDERZ", 90);
         titleText.anchor.set(0.5);
         this.menuGroup.add(titleText);
     },
@@ -1675,7 +1675,7 @@ playGame.prototype = {
             this.killCoin(coin);
 
             // playing coin sound
-            // this.coinSound.play();
+            this.coinSound.play();
         }, null, this);
     },
 
@@ -1740,7 +1740,7 @@ playGame.prototype = {
                     this.hero.body.velocity.y = -gameOptions.playerJump;
 
                     // playing jump sound
-                    // this.jumpSound.play();
+                    this.jumpSound.play();
 
                     // we are adding a coin at monster's position to reward the hero which bravely killed a monster
                     this.addCoin(deadly.position);
@@ -1765,7 +1765,7 @@ playGame.prototype = {
         this.gameOver = true;
 
         // playing hurt sound. losing a game hurts.
-        // this.hurtSound.play();
+        this.hurtSound.play();
 
         // applying a random horizontal velocity to the player
         this.hero.body.velocity.x =  game.rnd.integerInRange(-20, 20);
