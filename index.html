@@ -2,16 +2,14 @@
 <html>
     <head>
 
-        <!-- the name of your game -->
-		<title>Ladderz</title>
 
-        <!-- The viewport is a short tag that is included in the head of your HTML document that tells the browser how the page should be rendered -->
+		<title>微仔大暴走</title>
+
         <meta name = "viewport" content = "width = device-width, initial-scale = 1.0, maximum-scale = 1.0, minimum-scale = 1.0, user-scalable = 0, minimal-ui" />
+        <meta charset="UTF-8">
 
-        <!-- a 256x256 icon should go here, this is your favicon -->
         <link rel = "shortcut icon" sizes = "256x256" href = "icon-256.png" />
 
-        <!-- style sheet of your game page -->
         <style type = "text/css">
 
             /* resetting all margin and paddings */
@@ -22,10 +20,10 @@
 
             /* setting body background color */
             body{
-                background: #1c2331;
+                background: #1f255b;
             }
 
-            /* removing any touch delay on canvas (some old browsers applied about 300ms delay) */
+            /* removing any touch delay on canvas */
             canvas {
                 touch-action-delay: none;
                 touch-action: none;
@@ -46,10 +44,9 @@
             }
         </style>
 
-        <!-- Phaser -->
+
         <script src = "phaser.min.js"></script>
 
-        <!-- the game itslef -->
         <script src = "game.js"></script>
     </head>
     <body>

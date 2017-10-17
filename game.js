@@ -1,8 +1,7 @@
 // the game itself
 var game;
 
-/*  here we store the various game options, easy to find and change.
-    each change in these variables affects the gameplay, so feel free to experiment  */
+/*  here we store the various game options, easy to find and change.  */
 var gameOptions = {
 
     // width of the game, in pixels. Height will be calculated accordingly
@@ -223,7 +222,7 @@ preloadGame.prototype = {
             open "assets/sprites" folder to see all images
             in next line we are assigning "hero" key to a sprite sheet located at
             "assets/sprites/floor.png" where each frame is inside a 24x48 grid  */
-        game.load.spritesheet("hero", gameOptions.spritesPath + "hero.png", 24, 48);
+        game.load.spritesheet("hero", gameOptions.spritesPath + "heroWZ.png", 32, 48);
         game.load.spritesheet("coin", gameOptions.spritesPath + "coin.png", 48, 48);
         game.load.spritesheet("fire", gameOptions.spritesPath + "fire.png", 32, 58);
 
@@ -233,7 +232,7 @@ preloadGame.prototype = {
             next is the bitmap font file itself, usually a png image
             finally is the path to the fnt file that goes with the font.
             You can create your bitmap fonts with the free online tool Littera - http://kvazars.com/littera/  */
-        game.load.bitmapFont("font", gameOptions.fontsPath + "font.png", gameOptions.fontsPath + "font.fnt");
+        game.load.bitmapFont("font", gameOptions.fontsPath + "CNFont_0.png", gameOptions.fontsPath + "CNFont.fnt");
     },
 
     // create method is automatically executed once the state has been created.
@@ -464,7 +463,7 @@ playGame.prototype = {
             * the font size
             in this case we are showing the best score
         */
-        var highScoreText = game.add.bitmapText(game.width - 10, game.height - 10, "font", "Best Score: " + this.savedData.score.toString(), 30);
+        var highScoreText = game.add.bitmapText(game.width - 10, game.height - 10, "font", "最佳分数：" + this.savedData.score.toString(), 30);
 
         // bitmap texts can also have their registration point set
         highScoreText.anchor.set(1, 1);
@@ -473,14 +472,14 @@ playGame.prototype = {
         this.overlayGroup.add(highScoreText);
 
         // same concept applies to the bitmap text which shows the amount of coins collected
-        var coinsText = game.add.bitmapText(game.width / 2, game.height - 10, "font", "Coins: " + this.savedData.coins.toString(), 30);
+        var coinsText = game.add.bitmapText(game.width / 2, game.height - 10, "font", "金币" + this.savedData.coins.toString(), 30);
         coinsText.anchor.set(0.5, 1);
         this.overlayGroup.add(coinsText);
 
         /*  same concept applies to the bitmap text which shows the score.
             this time the bitmapText is bound to a property than to a local variable
             because we are goint to update it inside other methods  */
-        this.scoreText = game.add.bitmapText(10, game.height - 10, "font", "Score: 0", 30);
+        this.scoreText = game.add.bitmapText(10, game.height - 10, "font", "分数：0", 30);
         this.scoreText.anchor.set(0, 1);
         this.overlayGroup.add(this.scoreText);
     },
@@ -509,12 +508,17 @@ playGame.prototype = {
         }, 200, Phaser.Easing.Cubic.InOut, true, 0, -1, true);
 
         // adding a bitmap text with in-game instructions ("tap to jump"), setting its anchor and add it to menuGroup group
-        var tapText = game.add.bitmapText(game.width / 2, tap.y - 120, "font", "Tap to jump", 45);
+        var tapText = game.add.bitmapText(game.width / 2, tap.y - 120, "font", "点击屏幕跳跃", 45);
         tapText.anchor.set(0.5);
         this.menuGroup.add(tapText);
 
+        // //adding a bitmap text with a tip
+        // var tipText=game.add.bitmapText(game.width/2,tap.y-160,"font","中文测试",35);
+        // tipText.anchor.set(0.5);
+        // this.menuGroup.add(tipText);
+
         // adding a bitmap text with game title, setting its anchor and add it to menuGroup group
-        var titleText = game.add.bitmapText(game.width / 2, tap.y - 200, "font", "LADDERZ", 90);
+        var titleText = game.add.bitmapText(game.width / 2, tap.y - 200, "font", "微仔大暴走", 90);
         titleText.anchor.set(0.5);
         this.menuGroup.add(titleText);
     },
@@ -1369,10 +1373,10 @@ playGame.prototype = {
             now, the same sprite (the hero) can have more animations, that's why
             there's a second argument which is the array of frames to be used in the animation.
             in this case "walk" animation only takes frames 0 and 1 of the sprite sheet  */
-        this.hero.animations.add("walk", [0, 1]);
+        this.hero.animations.add("walk", [0, 1, 2, 3]);
 
         // following the same concept, "climb" animation uses frames 2 and 3
-        this.hero.animations.add("climb", [2, 3]);
+        this.hero.animations.add("climb", [4, 5]);
 
         // start playing "walk" animation, at 15 frames per second, in loop mode
         this.hero.animations.play("walk", 15, true);
