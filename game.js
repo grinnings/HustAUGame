@@ -508,7 +508,7 @@ playGame.prototype = {
         }, 200, Phaser.Easing.Cubic.InOut, true, 0, -1, true);
 
         // adding a bitmap text with in-game instructions ("tap to jump"), setting its anchor and add it to menuGroup group
-        var tapText = game.add.bitmapText(game.width / 2, tap.y - 120, "font", "点击屏幕跳跃", 45);
+        var tapText = game.add.bitmapText(game.width / 2, tap.y - 120, "font", "史上死得最快游戏", 45);
         tapText.anchor.set(0.5);
         this.menuGroup.add(tapText);
 
@@ -518,7 +518,7 @@ playGame.prototype = {
         // this.menuGroup.add(tipText);
 
         // adding a bitmap text with game title, setting its anchor and add it to menuGroup group
-        var titleText = game.add.bitmapText(game.width / 2, tap.y - 200, "font", "微仔大暴走", 90);
+        var titleText = game.add.bitmapText(game.width / 2, tap.y - 200, "font", "抓住那个肥球", 90);
         titleText.anchor.set(0.5);
         this.menuGroup.add(titleText);
     },
